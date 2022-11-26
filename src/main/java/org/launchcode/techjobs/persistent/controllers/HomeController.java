@@ -55,6 +55,9 @@ public class HomeController {
                                     @RequestParam int employerId,
                                     @RequestParam List<Integer> skills) {
 
+        model.addAttribute("employers", employerRepository.findAll());
+        model.addAttribute("skills", skillRepository.findAll());
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Job");
             return "add";
@@ -71,6 +74,7 @@ public class HomeController {
         newJob.setSkills(skillObjs);
 
         jobRepository.save(newJob);
+
         return "redirect:";
     }
 
