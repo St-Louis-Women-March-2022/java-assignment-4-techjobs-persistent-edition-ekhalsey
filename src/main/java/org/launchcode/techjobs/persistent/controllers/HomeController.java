@@ -82,7 +82,8 @@ public class HomeController {
     public String displayViewJob(Model model, @PathVariable int jobId) {
         Optional<Job> result = jobRepository.findById(jobId);
         if(result.isEmpty()) {
-        model.addAttribute("title", "Invalid Job Id: " + jobId);
+            model.addAttribute("jobs", jobRepository.findAll());
+        return "redirect:../";
         } else {
             Job job = result.get();
             model.addAttribute("job", job);
